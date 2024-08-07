@@ -12,6 +12,8 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
+  final Colors? color;
+  final Colors? backgroundColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -21,6 +23,8 @@ class CountrySearchListWidget extends StatefulWidget {
     this.showFlags,
     this.useEmoji,
     this.autoFocus = false,
+    this.color,
+    this.backgroundColor,
   });
 
   @override
@@ -57,30 +61,34 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            key: Key(TestHelper.CountrySearchInputKeyValue),
-            decoration: getSearchBoxDecoration(),
-            controller: _searchController,
-            autofocus: widget.autoFocus,
-            onChanged: (value) {
-              print('edited from git');
-              final String value = _searchController.text.trim();
-              return setState(
-                () => filteredCountries = Utils.filterCountries(
-                  countries: widget.countries,
-                  locale: widget.locale,
-                  value: value,
-                ),
-              );
-            },
-          ),
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      // Container wrapping TextFormField to set background color
+      Container(
+        color: backgroundColor ?? Colors.white, // Set your desired background color here
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: TextFormField(
+          key: Key(TestHelper.CountrySearchInputKeyValue),
+          decoration: getSearchBoxDecoration(),
+          controller: _searchController,
+          autofocus: widget.autoFocus,
+          onChanged: (value) {
+            final String value = _searchController.text.trim();
+            return setState(
+              () => filteredCountries = Utils.filterCountries(
+                countries: widget.countries,
+                locale: widget.locale,
+                value: value,
+              ),
+            );
+          },
         ),
-        Flexible(
+      ),
+      // Container wrapping ListView to set background color
+      Expanded(
+        child: Container(
+          color: Colors.white, // Set your desired background color here
           child: ListView.builder(
             controller: widget.scrollController,
             shrinkWrap: true,
@@ -120,9 +128,11 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             },
           ),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
+}
+
 
   @override
   void setState(fn) {
@@ -149,7 +159,7 @@ class DirectionalCountryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
-    color: Colors.grey[200], // Replace with your desired color
+    color: backgroundColor ?? Colors.white,
     child: ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
