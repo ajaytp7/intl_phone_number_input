@@ -36,6 +36,13 @@ class SelectorConfig {
   /// Use safe area for selectorType=BOTTOM_SHEET
   final bool useBottomSheetSafeArea;
 
+  /// [color], uses color
+  final Colors color;
+
+  /// [backgroundColor], uses backgroundColor
+  final Colors backgroundColor;
+  
+
   const SelectorConfig({
     this.selectorType = PhoneInputSelectorType.DROPDOWN,
     this.showFlags = true,
@@ -45,5 +52,7 @@ class SelectorConfig {
     this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
+    this.color = Colors.black,
+    this.backgroundColor = Colors.white,
   });
 }
