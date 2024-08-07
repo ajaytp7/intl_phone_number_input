@@ -37,10 +37,10 @@ class SelectorConfig {
   final bool useBottomSheetSafeArea;
 
   /// [color], uses color
-  final Colors color;
+  final Color color;
 
   /// [backgroundColor], uses backgroundColor
-  final Colors backgroundColor;
+  final Color backgroundColor;
   
 
   const SelectorConfig({
