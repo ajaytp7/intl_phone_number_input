@@ -88,7 +88,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       // Container wrapping ListView to set background color
       Expanded(
         child: Container(
-          color: Colors.white, // Set your desired background color here
+          color: widget.backgroundColor ?? Colors.white, // Set your desired background color here
           child: ListView.builder(
             controller: widget.scrollController,
             shrinkWrap: true,
@@ -159,6 +159,7 @@ class DirectionalCountryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   return Container(
+    color: widget.backgroundColor ?? Colors.white,
     child: ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
