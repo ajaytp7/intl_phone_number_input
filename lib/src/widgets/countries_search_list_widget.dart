@@ -71,21 +71,23 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
               widget.backgroundColor, // Set your desired background color here
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
-            key: Key(TestHelper.CountrySearchInputKeyValue),
-            decoration: getSearchBoxDecoration(),
-            controller: _searchController,
-            autofocus: widget.autoFocus,
-            onChanged: (value) {
-              final String value = _searchController.text.trim();
-              return setState(
-                () => filteredCountries = Utils.filterCountries(
-                  countries: widget.countries,
-                  locale: widget.locale,
-                  value: value,
-                ),
-              );
-            },
-          ),
+              key: Key(TestHelper.CountrySearchInputKeyValue),
+              decoration: getSearchBoxDecoration(),
+              controller: _searchController,
+              autofocus: widget.autoFocus,
+              onChanged: (value) {
+                final String value = _searchController.text.trim();
+                return setState(
+                  () => filteredCountries = Utils.filterCountries(
+                    countries: widget.countries,
+                    locale: widget.locale,
+                    value: value,
+                  ),
+                );
+              },
+              style: TextStyle(
+                color: widget.color, // Set font color here
+              )),
         ),
         // Container wrapping ListView to set background color
         Expanded(
