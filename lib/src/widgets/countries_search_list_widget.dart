@@ -61,80 +61,82 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   @override
   Widget build(BuildContext context) {
-  return Column(
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      // Container wrapping TextFormField to set background color
-      Container(
-        color: widget.backgroundColor ?? Colors.white, // Set your desired background color here
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-        child: TextFormField(
-          key: Key(TestHelper.CountrySearchInputKeyValue),
-          decoration: getSearchBoxDecoration(),
-          controller: _searchController,
-          autofocus: widget.autoFocus,
-          onChanged: (value) {
-            final String value = _searchController.text.trim();
-            return setState(
-              () => filteredCountries = Utils.filterCountries(
-                countries: widget.countries,
-                locale: widget.locale,
-                value: value,
-              ),
-            );
-          },
-        ),
-      ),
-      // Container wrapping ListView to set background color
-      Expanded(
-        child: Container(
-          color: widget.backgroundColor ?? Colors.white, // Set your desired background color here
-          child: ListView.builder(
-            controller: widget.scrollController,
-            shrinkWrap: true,
-            itemCount: filteredCountries.length,
-            itemBuilder: (BuildContext context, int index) {
-              Country country = filteredCountries[index];
-
-              return DirectionalCountryListTile(
-                country: country,
-                locale: widget.locale,
-                showFlags: widget.showFlags!,
-                useEmoji: widget.useEmoji!,
-                backgroundColor: widget.backgroundColor,
-                color: widget.color,
+    print(widget.backgroundColor);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        // Container wrapping TextFormField to set background color
+        Container(
+          color:
+              widget.backgroundColor, // Set your desired background color here
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            key: Key(TestHelper.CountrySearchInputKeyValue),
+            decoration: getSearchBoxDecoration(),
+            controller: _searchController,
+            autofocus: widget.autoFocus,
+            onChanged: (value) {
+              final String value = _searchController.text.trim();
+              return setState(
+                () => filteredCountries = Utils.filterCountries(
+                  countries: widget.countries,
+                  locale: widget.locale,
+                  value: value,
+                ),
               );
-              // return ListTile(
-              //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-              //   leading: widget.showFlags!
-              //       ? _Flag(country: country, useEmoji: widget.useEmoji)
-              //       : null,
-              //   title: Align(
-              //     alignment: AlignmentDirectional.centerStart,
-              //     child: Text(
-              //       '${Utils.getCountryName(country, widget.locale)}',
-              //       textDirection: Directionality.of(context),
-              //       textAlign: TextAlign.start,
-              //     ),
-              //   ),
-              //   subtitle: Align(
-              //     alignment: AlignmentDirectional.centerStart,
-              //     child: Text(
-              //       '${country.dialCode ?? ''}',
-              //       textDirection: TextDirection.ltr,
-              //       textAlign: TextAlign.start,
-              //     ),
-              //   ),
-              //   onTap: () => Navigator.of(context).pop(country),
-              // );
             },
           ),
         ),
-      ),
-    ],
-  );
-}
+        // Container wrapping ListView to set background color
+        Expanded(
+          child: Container(
+            color: widget
+                .backgroundColor, // Set your desired background color here
+            child: ListView.builder(
+              controller: widget.scrollController,
+              shrinkWrap: true,
+              itemCount: filteredCountries.length,
+              itemBuilder: (BuildContext context, int index) {
+                Country country = filteredCountries[index];
 
+                return DirectionalCountryListTile(
+                  country: country,
+                  locale: widget.locale,
+                  showFlags: widget.showFlags!,
+                  useEmoji: widget.useEmoji!,
+                  backgroundColor: widget.backgroundColor,
+                  color: widget.color,
+                );
+                // return ListTile(
+                //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+                //   leading: widget.showFlags!
+                //       ? _Flag(country: country, useEmoji: widget.useEmoji)
+                //       : null,
+                //   title: Align(
+                //     alignment: AlignmentDirectional.centerStart,
+                //     child: Text(
+                //       '${Utils.getCountryName(country, widget.locale)}',
+                //       textDirection: Directionality.of(context),
+                //       textAlign: TextAlign.start,
+                //     ),
+                //   ),
+                //   subtitle: Align(
+                //     alignment: AlignmentDirectional.centerStart,
+                //     child: Text(
+                //       '${country.dialCode ?? ''}',
+                //       textDirection: TextDirection.ltr,
+                //       textAlign: TextAlign.start,
+                //     ),
+                //   ),
+                //   onTap: () => Navigator.of(context).pop(country),
+                // );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   void setState(fn) {
@@ -164,32 +166,32 @@ class DirectionalCountryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return Container(
-    color: backgroundColor ?? Colors.white,
-    child: ListTile(
-      key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
-      leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
-      title: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${Utils.getCountryName(country, locale)}',
-          textDirection: Directionality.of(context),
-          textAlign: TextAlign.start,
+    return Container(
+      color: backgroundColor,
+      child: ListTile(
+        key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
+        leading:
+            (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
+        title: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: Text(
+            '${Utils.getCountryName(country, locale)}',
+            textDirection: Directionality.of(context),
+            textAlign: TextAlign.start,
+          ),
         ),
-      ),
-      subtitle: Align(
-        alignment: AlignmentDirectional.centerStart,
-        child: Text(
-          '${country.dialCode ?? ''}',
-          textDirection: TextDirection.ltr,
-          textAlign: TextAlign.start,
+        subtitle: Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: Text(
+            '${country.dialCode ?? ''}',
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.start,
+          ),
         ),
+        onTap: () => Navigator.of(context).pop(country),
       ),
-      onTap: () => Navigator.of(context).pop(country),
-    ),
-  );
-}
-
+    );
+  }
 }
 
 class _Flag extends StatelessWidget {

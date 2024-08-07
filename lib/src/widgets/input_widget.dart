@@ -303,6 +303,7 @@ class _InputWidgetState extends State<InternationalPhoneNumberInput> {
         isEnabled: widget.isEnabled,
         autoFocusSearchField: widget.autoFocusSearch,
         isScrollControlled: widget.countrySelectorScrollControlled,
+        backgroundColor: widget.selectorConfig.backgroundColor,
       ));
     }
 
@@ -410,6 +411,7 @@ class _InputWidgetView
                   isEnabled: widget.isEnabled,
                   autoFocusSearchField: widget.autoFocusSearch,
                   isScrollControlled: widget.countrySelectorScrollControlled,
+                  backgroundColor: widget.selectorConfig.backgroundColor,
                 ),
                 SizedBox(
                   height: state.selectorButtonBottomPadding,
