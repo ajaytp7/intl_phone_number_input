@@ -66,7 +66,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
     children: <Widget>[
       // Container wrapping TextFormField to set background color
       Container(
-        color: widget.backgroundColor, // Set your desired background color here
+        color: widget.backgroundColor ?? Colors.white, // Set your desired background color here
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: TextFormField(
           key: Key(TestHelper.CountrySearchInputKeyValue),
