@@ -147,6 +147,8 @@ class DirectionalCountryListTile extends StatelessWidget {
   final String? locale;
   final bool showFlags;
   final bool useEmoji;
+  final Color? color;
+  final Color? backgroundColor;
 
   const DirectionalCountryListTile({
     Key? key,
@@ -154,12 +156,14 @@ class DirectionalCountryListTile extends StatelessWidget {
     required this.locale,
     required this.showFlags,
     required this.useEmoji,
+    required this.color,
+    required this.backgroundColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
   return Container(
-    color: widget.backgroundColor ?? Colors.white,
+    color: backgroundColor ?? Colors.white,
     child: ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
