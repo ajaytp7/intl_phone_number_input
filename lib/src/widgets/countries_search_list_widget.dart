@@ -68,6 +68,7 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
             controller: _searchController,
             autofocus: widget.autoFocus,
             onChanged: (value) {
+              print('edited from git');
               final String value = _searchController.text.trim();
               return setState(
                 () => filteredCountries = Utils.filterCountries(
