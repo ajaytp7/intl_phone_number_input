@@ -147,7 +147,9 @@ class DirectionalCountryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
+  return Container(
+    color: Colors.grey[200], // Replace with your desired color
+    child: ListTile(
       key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
       leading: (showFlags ? _Flag(country: country, useEmoji: useEmoji) : null),
       title: Align(
@@ -167,8 +169,10 @@ class DirectionalCountryListTile extends StatelessWidget {
         ),
       ),
       onTap: () => Navigator.of(context).pop(country),
-    );
-  }
+    ),
+  );
+}
+
 }
 
 class _Flag extends StatelessWidget {
