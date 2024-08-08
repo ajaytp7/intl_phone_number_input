@@ -12,8 +12,8 @@ class CountrySearchListWidget extends StatefulWidget {
   final bool autoFocus;
   final bool? showFlags;
   final bool? useEmoji;
-  final Color? color;
-  final Color? backgroundColor;
+  final Color? cardFontColor;
+  final Color? cardBackgroundColor;
 
   CountrySearchListWidget(
     this.countries,
@@ -23,8 +23,8 @@ class CountrySearchListWidget extends StatefulWidget {
     this.showFlags,
     this.useEmoji,
     this.autoFocus = false,
-    this.color,
-    this.backgroundColor,
+    this.cardFontColor,
+    this.cardBackgroundColor,
   });
 
   @override
@@ -61,14 +61,14 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.backgroundColor);
+    print(widget.cardBackgroundColor);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         // Container wrapping TextFormField to set background color
         Container(
           color:
-              widget.backgroundColor, // Set your desired background color here
+              widget.cardBackgroundColor, // Set your desired background color here
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
               key: Key(TestHelper.CountrySearchInputKeyValue),
@@ -86,14 +86,14 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                 );
               },
               style: TextStyle(
-                color: widget.color, // Set font color here
+                color: widget.cardFontColor, // Set font color here
               )),
         ),
         // Container wrapping ListView to set background color
         Expanded(
           child: Container(
             color: widget
-                .backgroundColor, // Set your desired background color here
+                .cardBackgroundColor, // Set your desired background color here
             child: ListView.builder(
               controller: widget.scrollController,
               shrinkWrap: true,
@@ -106,8 +106,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
                   locale: widget.locale,
                   showFlags: widget.showFlags!,
                   useEmoji: widget.useEmoji!,
-                  backgroundColor: widget.backgroundColor,
-                  color: widget.color,
+                  cardBackgroundColor: widget.cardBackgroundColor,
+                  cardFontColor: widget.cardFontColor,
                 );
                 // return ListTile(
                 //   key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
@@ -153,8 +153,8 @@ class DirectionalCountryListTile extends StatelessWidget {
   final String? locale;
   final bool showFlags;
   final bool useEmoji;
-  final Color? color;
-  final Color? backgroundColor;
+  final Color? cardFontColor;
+  final Color? cardBackgroundColor;
 
   const DirectionalCountryListTile({
     Key? key,
@@ -162,14 +162,14 @@ class DirectionalCountryListTile extends StatelessWidget {
     required this.locale,
     required this.showFlags,
     required this.useEmoji,
-    required this.color,
-    required this.backgroundColor,
+    required this.cardFontColor,
+    required this.cardBackgroundColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: backgroundColor,
+      color: cardBackgroundColor,
       child: ListTile(
         key: Key(TestHelper.countryItemKeyValue(country.alpha2Code)),
         leading:

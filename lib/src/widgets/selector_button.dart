@@ -17,7 +17,8 @@ class SelectorButton extends StatelessWidget {
   final String? locale;
   final bool isEnabled;
   final bool isScrollControlled;
-  final Color? backgroundColor;
+  final Color? cardFontColor;
+  final Color? cardBackgroundColor;
 
   final ValueChanged<Country?> onCountryChanged;
 
@@ -33,7 +34,8 @@ class SelectorButton extends StatelessWidget {
       required this.onCountryChanged,
       required this.isEnabled,
       required this.isScrollControlled,
-      this.backgroundColor})
+      this.cardBackgroundColor,
+      this.cardFontColor})
       : super(key: key);
 
   @override
@@ -121,7 +123,7 @@ class SelectorButton extends StatelessWidget {
   /// shows a Dialog with list [countries] if the [PhoneInputSelectorType.DIALOG] is selected
   Future<Country?> showCountrySelectorDialog(
       BuildContext inheritedContext, List<Country> countries) {
-    print('color ${backgroundColor}');
+    print('color ${cardBackgroundColor}');
     return showDialog(
       context: inheritedContext,
       barrierDismissible: true,
@@ -137,7 +139,8 @@ class SelectorButton extends StatelessWidget {
               showFlags: selectorConfig.showFlags,
               useEmoji: selectorConfig.useEmoji,
               autoFocus: autoFocusSearchField,
-              backgroundColor: selectorConfig.backgroundColor,
+              cardBackgroundColor: selectorConfig.cardBackgroundColor,
+              cardFontColor: selectorConfig.cardFontColor,
             ),
           ),
         ),
@@ -189,11 +192,12 @@ class SelectorButton extends StatelessWidget {
                         showFlags: selectorConfig.showFlags,
                         useEmoji: selectorConfig.useEmoji,
                         autoFocus: autoFocusSearchField,
-                        backgroundColor: backgroundColor,
+                        cardBackgroundColor: cardBackgroundColor,
+                        cardFontColor: cardFontColor,
                       ),
                     ),
                   ),
-                  color: backgroundColor,
+                  color: cardBackgroundColor,
                 );
               },
             ),

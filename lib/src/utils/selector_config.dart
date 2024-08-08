@@ -37,10 +37,10 @@ class SelectorConfig {
   final bool useBottomSheetSafeArea;
 
   /// [color], uses color
-  final Color color;
+  final Color cardFontColor;
 
   /// [backgroundColor], uses backgroundColor
-  final Color backgroundColor;
+  final Color cardBackgroundColor;
   
 
   const SelectorConfig({
@@ -52,7 +52,7 @@ class SelectorConfig {
     this.leadingPadding,
     this.trailingSpace = true,
     this.useBottomSheetSafeArea = false,
-    this.color = Colors.black,
-    this.backgroundColor = Colors.white,
+    this.cardFontColor = Colors.black,
+    this.cardBackgroundColor = Colors.white,
   });
 }
