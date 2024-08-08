@@ -67,8 +67,8 @@ class _CountrySearchListWidgetState extends State<CountrySearchListWidget> {
       children: <Widget>[
         // Container wrapping TextFormField to set background color
         Container(
-          color:
-              widget.cardBackgroundColor, // Set your desired background color here
+          color: widget
+              .cardBackgroundColor, // Set your desired background color here
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
               key: Key(TestHelper.CountrySearchInputKeyValue),
@@ -180,15 +180,15 @@ class DirectionalCountryListTile extends StatelessWidget {
             '${Utils.getCountryName(country, locale)}',
             textDirection: Directionality.of(context),
             textAlign: TextAlign.start,
+            style: TextStyle(color: cardFontColor ?? Colors.black),
           ),
         ),
         subtitle: Align(
           alignment: AlignmentDirectional.centerStart,
-          child: Text(
-            '${country.dialCode ?? ''}',
-            textDirection: TextDirection.ltr,
-            textAlign: TextAlign.start,
-          ),
+          child: Text('${country.dialCode ?? ''}',
+              textDirection: TextDirection.ltr,
+              textAlign: TextAlign.start,
+              style: TextStyle(color: cardFontColor ?? Colors.black)),
         ),
         onTap: () => Navigator.of(context).pop(country),
       ),
